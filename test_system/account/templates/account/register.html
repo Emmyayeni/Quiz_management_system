@@ -1,0 +1,221 @@
+{% extends 'basexam.html' %}
+{% load static %}
+{% block title %}login{% endblock title %}
+</style>
+{% block content %}
+<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+        <div class="d-flex justify-content-center">
+          <a href="index.html" class="logo d-flex align-items-center w-auto">
+            <img src="assets/img/logo.png" alt="">
+            <span class="d-none d-lg-block">Soasis</span>
+          </a>
+        </div><!-- End Logo -->
+
+<div class="card card-default">
+  <div class="card-body p-0 row justify-content-center">
+    <div class="bs-stepper linear">
+      <div class="bs-stepper-header" role="tablist">
+        <!-- your steps here -->
+        <div class="step active" data-target="#logins-part">
+          <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
+          </button>
+        </div>
+        <div class="step" data-target="#information-part">
+          <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger" aria-selected="false" disabled="disabled">
+          </button>
+        </div>
+        <div class="step" data-target="#account-part">
+          <button type="button" class="step-trigger" role="tab" aria-controls="account-part" id="account-part-trigger" aria-selected="false" disabled="disabled">
+          </button>
+        </div>
+        <div class="step" data-target="#passwordy-part">
+          <button type="button" class="step-trigger" role="tab" aria-controls="passwordy-part" id="passwordy-part-trigger" aria-selected="false" disabled="disabled">
+          </button>
+        </div>
+      </div>
+      <form class="bs-stepper-content mb-3" id="form">
+         <div class="pt-4 pb-2">
+          <h5 class="card-title text-center pb-0 fs-4">Create account</h5>
+          <p class="text-center small">Enter your details correctly</p>
+        </div>
+        <!-- your steps content here -->
+        <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+          <div class="row g-3 needs-validation" id="form1" novalidate="">
+
+            <div class="col-12">
+              <label for="yourUsername" class="form-label">Username</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" name="username" class="form-control" id="yourUsername" required="">
+                <div class="invalid-feedback">Please enter your username.</div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="yourPassword" class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" id="yourEmail" required="">
+              <div class="invalid-feedback">Please enter your email!</div>
+            </div>
+
+             
+              
+          <div class="col-12">
+            <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+          </div>  
+        </div>
+        </div>
+        <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+          <div class="row g-3 needs-validation" novalidate="" id="form2">
+
+             
+              <label for="yourUsername" class="form-label">Account type</label>
+               
+                <div class=" col-12">
+                  <input class="form-check-input " type="radio" name="gridRadios" id="gridRadios1" value="student" >
+                  <label class="form-check-label" for="gridRadios1">
+                    student
+                  </label>
+                </div>
+                <div class="col-12">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="employer">
+                  <label class="form-check-label" for="gridRadios2">
+                    employer
+                  </label>
+                </div>
+                <div class="col-12">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="employee">
+                  <label class="form-check-label" for="gridRadios3">
+                    employee
+                  </label>
+                </div>
+                <div class="col-12">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios4" value="lecturer">
+                  <label class="form-check-label" for="gridRadios4">
+                    lecturer
+                  </label>
+                </div>
+             <div class="col-12">
+              <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+               <button type="submit" class="btn btn-primary" onclick="stepper.next()">Next</button>
+             </div>
+            </div>
+          
+        </div>
+        <div id="account-part" class="content" role="tabpanel" aria-labelledby="account-part-trigger">
+          <div class="row g-3 needs-validation" id="form3" novalidate="">
+
+            <div class="col-12">
+              <label for="inputNumber" class="col-sm-2 col-form-label">Mobile</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" name="number">
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="formFile" class="col-sm-2 col-form-label">avatar</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="file" id="formFile" name="avatar">
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="inputDate" class="col-sm-2 col-form-label">D.O.B</label>
+              <div class="col-sm-10">
+                <input type="date" name="dob" class="form-control">
+              </div>
+            </div>
+  
+            <div class="col-12">
+              <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+              <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+            </div>
+          </div>
+        </div>  
+        <div id="passwordy-part" class="content" role="tabpanel" aria-labelledby="passwordy-part-trigger">
+          <div id="form4" class="row g-3 needs-validation">
+            <div class="col-12">
+              <label for="yourPassword1" class="form-label">password</label>
+              <input type="password" name="password" class="form-control" id="yourPassword1" required="">
+              <div class="invalid-feedback">Please enter your password!</div>
+            </div>
+            <div class="col-12">
+              <label for="yourPassword2" class="form-label">confirm password </label>
+              <input type="password" name="confirm_password" class="form-control" id="yourPassword2" required="">
+              <div class="invalid-feedback">Please confirm password!</div>
+            </div>
+              <p class="text-danger d-none" id="error">your password does'nt match</p>
+            <div class="col-12">
+              <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+              <button class="btn btn-primary" id="submit">Submit</button>
+            </div>  
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- /.card-body -->
+</div>
+
+        
+
+      </div>
+    </div>
+  </div>
+
+</section>
+<script type="text/javascript">
+  var form = document.getElementById('form')
+  var errm = document.getElementById('error')
+  
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault()
+    submitFormData()
+    console.log('hello world')
+  })
+
+  function submitFormData(){
+    var password = form.password.value
+    var password2 = form.confirm_password.value
+    if (password == password2){
+        errm.classList.add('d-none')     
+      var QuestionFormData = {
+        'username':form.username.value,
+        'email':form.email.value,
+        'account_type':form.gridRadios.value,
+        'number':form.number.value,
+        'avatar':form.avatar.value,
+        'dob':form.dob.value,
+        'password':form.password.value,
+        'confirm_password':form.confirm_password.value,
+      }
+      console.log(QuestionFormData)
+
+      var urlm = "{% url 'register' %}";
+
+      fetch(urlm, {
+        method:'POST',
+        headers:{
+          'Content-Type':'applicaiton/json',
+          'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'form':QuestionFormData}),
+
+      })
+      .then((response) => response.json())
+      .then((data) => {
+      console.log('Success:', data);
+      alert('question successfully added');
+      window.location.href = "{% url 'login' %}"
+      })
+
+    }else{
+      errm.classList.remove('d-none')
+
+    }
+    
+  console.log(QuestionFormData)
+}
+</script>
+
+{% endblock content %}

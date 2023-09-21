@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<p> choose account type</p>
+    <p><a href="{% url 'register_lecturer' %}">lecturer/staff</a></p>
+    <p><a href="{% url 'register_student' %}">student</a></p>
+    <p><a href="{% url 'register_employee' %}">employee</a></p>
+    <p><a href="{% url 'register_employer' %}">employer</a></p>
+{% endblock content %}

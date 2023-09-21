@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+  add question
+</button>
+<p> questions and anwers in the database </p>
+<form id="atform">
+{% for question in questions %}
+    <div class="text" class="qest" id="{{question.question.id}}" name="question">{{question.question}}</div>
+{% endfor %}
+<button class="btn btn-primary" id="addtest" type="submit">upload test</button>
+</form>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Question </h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form id="form" class="row">
+                  <textarea type="text" name="question" class="col-12 form-control" placeholder="question"></textarea>
+                <p class="col-12">answer:</p>
+                <input type="text" name="a" class="form-control col-6" placeholder="a">
+                <input type="text" name="b" class="form-control col-6" placeholder="b">
+                <input type="text" name="c" class="form-control col-6" placeholder="c">
+                <input type="text" name="d" class="form-control col-6" placeholder="d">
+                <div class="col-6">correct answer :</div>
+                <input type="text" class="form-control col-6" name="correct_answer" placeholder="correct answer ">
+                <input type="submit" class="submit btn btn-primary" id="submit">
+             </form>
+            </div>
+          </div>
+        </div>
+      </div>
+<script type="text/javascript">
+var form = document.getElementById('form');
+var atform = document.getElementById('atform')
+var addTest = document.getElementById('addtest');
+
+ addTest.addEventListener('click',()=>{
+      alert('sometin touch me')
+   })
+    form.addEventListener('submit', function(e){
+	   e.preventDefault()
+	   console.log('Form Submitted...')
+	    submitFormData()
+	})
+atform.addEventListener('submit', function(e){
+	 e.preventDefault()
+	  console.log('Form Submitted...')
+	  submitatFormData()
+})
+
+	 function submitFormData(){
+	   console.log('question added')
+
+	    var QuestionFormData = {
+		'question':form.question.value,
+		'a':form.a.value,
+		'b':form.b.value,
+		'c':form.c.value,
+		'd':form.d.value,
+		'correct_answer':form.correct_answer.value
+	}
+
+	    	console.log('Question Info:', QuestionFormData)
+
+	    	var url = "/create_question"
+	    	fetch(url, {
+	    		method:'POST',
+	    		headers:{
+	    			'Content-Type':'applicaiton/json',
+	    			'X-CSRFToken':csrftoken,
+	    		},
+	    		body:JSON.stringify({'form':QuestionFormData}),
+
+	    	})
+	    	.then((response) => response.json())
+	    	.then((data) => {
+				console.log('Success:', data);
+				alert('question successfully added');
+				window.location.href = "{% url 'question' %}"
+
+				})
+	    }
+
+function submitatFormData(){
+			console.log(atform)
+//    <!-- console.log(atform.children)
+// 	    	var url = "/addtest"
+// 	    	fetch(url, {
+// 	    		method:'POST',
+// 	    		headers:{
+// 	    			'Content-Type':'applicaiton/json',
+// 	    			'X-CSRFToken':csrftoken,
+// 	    		},
+// 	    		body:JSON.stringify({'form':QuestionFormData}),
+
+// 	    	})
+// 	    	.then((response) => response.json())
+// 	    	.then((data) => {
+// 				console.log('Success:', data);
+// 				alert('added test');
+// 				window.location.href = "{% url 'question' %}"
+
+// 				})
+}
+
+
+</script>
+
+
+
+
+{% endblock content %}
