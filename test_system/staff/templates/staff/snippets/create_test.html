@@ -1,0 +1,219 @@
+{% extends "staff/snippets/base.html" %}
+{% block content %}
+{% include "staff/snippets/nav.html" %}
+{% include "staff/snippets/aside.html" %}
+
+<main class="main" id="main">
+    <section>
+
+        <section class="content">
+            <div class="row">
+              <div class="card recent-sales overflow-auto">
+                <div class="d-flex justify-content-end align-items-center">
+                  <button class="btn btn-warning m-2"><i class="bi bi-list-check"></i></button>
+                  <button class="btn btn-primary"><i class="bi bi-plus"></i></button>
+                </div>
+                
+                <div class="card-body">
+                  <h5 class="card-title">Question list <span>| Today</span></h5>
+
+                  <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                    <div class="dataTable-top">
+                      <div class="dataTable-dropdown">
+                        <label>
+                          <select class="dataTable-selector">
+                            <option value="5">5</option>
+                            <option value="10" selected="">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                          </select> entries per page</label>
+                        </div><div class="dataTable-search">
+                          <input class="dataTable-input" placeholder="Search..." type="text">
+                        </div>
+                      </div>
+                      <div class="dataTable-container">
+                        <table class="table table-borderless datatable dataTable-table">
+                          <thead>
+                            <tr>
+                              <th scope="col" data-sortable="" style="width: 15.6085%;"><a href="#" class="dataTable-sorter">#id</a></th>
+                              <th scope="col" data-sortable="" style="width: 22.4868%;"><a href="#" class="dataTable-sorter">question</a></th>
+                              <th scope="col" data-sortable="" style="width: 14.2857%;"><a href="#" class="dataTable-sorter">date</a></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row"><a href="#">#2457</a></th>
+                              <td><a href="#">what is your name</a> </td>
+                              <td>2022-11</td>
+                            </tr>
+                            <tr>
+                              <th scope="row"><a href="#">#2147</a></th>
+                              <td><a href="#">where are you  where</a></td>
+                              <td>2022-12</td>
+                            </tr>
+                            <tr>
+                              <th scope="row"><a href="#">#2049</a></th>
+                              <td><a href="#">how old are you</a></td><td>2021-13</td>
+                              
+                            </tr>
+                            <tr>
+                              <th scope="row"><a href="#">#2644</a></th>
+                              <td><a href="#">where do you live</a></td><td>2020-34</td>
+                              
+                            </tr>
+                            <tr>
+                              <th scope="row"><a href="#">#2644</a></th>
+                              <td><a href="#">where are you from</a></td>
+                              <td>2021-34</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="dataTable-bottom">
+                        <div class="dataTable-info">Showing 1 to 5 of 5 entries</div>
+                        <nav class="dataTable-pagination">
+                          <ul class="dataTable-pagination-list"></ul>
+                        </nav>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+          </section>
+        <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Add Question</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-2 col-form-label">Question:</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="question" class="form-control">
+                          </div>
+                        </div>
+                        <p>Options:</p>
+                        <div class="row mb-3">
+                          <label for="inputEmail" class="col-sm-2 col-form-label">A:</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="a" class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputPassword" class="col-sm-2 col-form-label">B:</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="b" class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputNumber" class="col-sm-2 col-form-label">C:</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="c" class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputNumber" class="col-sm-2 col-form-label">D:</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="d" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputNumber" class="col-sm-2 col-form-label">correct Answer:</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="correct_answer" class="form-control">
+                            </div>
+                          </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        <script type="text/javascript">
+        var form = document.getElementById('form');
+        var atform = document.getElementById('atform')
+        var addTest = document.getElementById('addtest');
+
+        addTest.addEventListener('click',()=>{
+            alert('sometin touch me')
+        })
+            form.addEventListener('submit', function(e){
+            e.preventDefault()
+            console.log('Form Submitted...')
+                submitFormData()
+            })
+        atform.addEventListener('submit', function(e){
+            e.preventDefault()
+            console.log('Form Submitted...')
+            submitatFormData()
+        })
+
+            function submitFormData(){
+            console.log('question added')
+
+                var QuestionFormData = {
+                'question':form.question.value,
+                'a':form.a.value,
+                'b':form.b.value,
+                'c':form.c.value,
+                'd':form.d.value,
+                'correct_answer':form.correct_answer.value
+            }
+
+                    console.log('Question Info:', QuestionFormData)
+
+                    var url = "/create_question"
+                    fetch(url, {
+                        method:'POST',
+                        headers:{
+                            'Content-Type':'applicaiton/json',
+                            'X-CSRFToken':csrftoken,
+                        },
+                        body:JSON.stringify({'form':QuestionFormData}),
+
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                        alert('question successfully added');
+                        window.location.href = "{% url 'question' %}"
+
+                        })
+                }
+
+        function submitatFormData(){
+                    console.log(atform)
+            console.log(atform.children)
+        	    	var url = "/addtest"
+        	    	fetch(url, {
+        	    		method:'POST',
+        	    		headers:{
+        	    			'Content-Type':'applicaiton/json',
+        	    			'X-CSRFToken':csrftoken,
+        	    		},
+        	    		body:JSON.stringify({'form':QuestionFormData}),
+
+        	    	})
+        	    	.then((response) => response.json())
+        	    	.then((data) => {
+        				console.log('Success:', data);
+        				alert('added test');
+        				window.location.href = "{% url 'create_test' %}"
+
+        				})
+        }
+
+
+        </script>
+    </section>
+</main>
+{% endblock content %}

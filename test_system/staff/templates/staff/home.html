@@ -1,0 +1,185 @@
+{% extends "staff/snippets/base.html" %}
+{% block content %}
+{% include "staff/snippets/nav.html" %}
+{% include "staff/snippets/aside.html" %}
+<style type="text/css">
+  .dashboard .customers-card .settings{
+    color: #520657;
+    background: #e3a5e3;
+}
+.dashboard .customers-card .file{
+  color: #061541;
+  background: #8a8aed;
+}
+.dashboard .customers-card .profile{
+  color: #692929;
+  background: #e7c2b0;
+}
+.dashboard .customers-card .performance{
+  color: #4bed08;
+  background: #bbfbc0;
+}
+.dashboard .customers-card .test{
+  color: #ed08bc;
+  background: #f9c7ec;
+}
+
+</style>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1> Staff | Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="{% url 'students' %}" class="text-dark">students</a></h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center test">
+                      <i class="bi bi-pen"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="{% url 'create_test'%}" class="text-dark">Examination/quiz</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card sales-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-list-check"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">student performance</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center settings">
+                      <i class="bi bi-gear"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">settings</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center profile">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">profile</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center file">
+                      <i class="bi bi-files"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">Files</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all files 
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+          </div>
+        </div><!-- End Left side columns -->
+     </div>
+    </section>
+
+
+{% endblock content %}

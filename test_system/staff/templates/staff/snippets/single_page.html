@@ -1,0 +1,60 @@
+{% extends "staff/snippets/base.html" %}
+{% block content %}
+{% include "staff/snippets/nav.html" %}
+{% include "staff/snippets/aside.html" %}
+<style type="text/css">
+    .edit_btn{
+        margin-left:97%;
+        margin-top:-9.5rem;
+    }
+    .arrow{
+        margin-left:-10px;
+    }
+</style>
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+          <div class="row">
+            <!-- Right side columns -->
+            <div class="col-md-12">
+              <div class="card rounded">
+                <div class="card-body" >
+                   <a href="#"><i class="bi bi-arrow-left arrow"></a></i>
+                  <h5 class="card-title ">Quiz</h5>
+                  
+                  <button class="btn btn-warning edit_btn"><i class="bi bi-pen "></i></button>
+                  <div class="card-body m-0">
+                    <i class="text-bold ">Question <span>1 of 3</span></i>
+                    <div class="pt-3 question" id="">
+                      what is your name
+                    </div>
+                    <div class="d-flex flex-wrap mb-3 pt-3 gap-3" id="form">
+                      
+                      <div class=" d-flex flex-wrap gap-1">
+                        (A).<p>emmanuel</p>
+                        </label>
+                      </div>
+                      <div class="d-flex flex-wrap gap-1">
+                        (B).<p>victor</p>
+                        </label>
+                      </div>
+                      <div class="d-flex flex-wrap gap-1">
+                        (C).<p>james</p>
+                        </label>
+                      </div>
+                      <div class="d-flex flex-wrap gap-1">
+                        (D).<p>
+                         tehe</p>
+                        </label>
+                      </div>
+
+                    </div>
+                    <div class="d-flex"> 
+                        answer:<p class="text-primary"> victor</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </section>
+</main>
+{% endblock content %}

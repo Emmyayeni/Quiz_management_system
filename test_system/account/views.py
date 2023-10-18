@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.contrib.auth import login, authenticate,logout
 from django.shortcuts import render,redirect
 from django.views import View
@@ -7,9 +8,11 @@ from django.contrib import messages
 from account.models import Account,Student,Staff,Employee,Employer
 # Create your views here.
 import json
+from .forms import RegistrationForm
 
 
 class RegistrationView(View):
+    form = RegistrationForm()
     def get(self,request):
         # email 
         #username
@@ -19,9 +22,27 @@ class RegistrationView(View):
         return render(request,'account/register.html')
 
     def post(self,request):
-        data = json.loads(request.body)
-        print(data)
-        return
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email').lower()
+            raw_password = form.cleaned_data.get('password1')
+            account = authenticate(email=email, password=raw_password)
+            account_type = request.POST.get("account_type")
+            if account_type == "student":
+                student = Student.objects.create(user=account)
+                student.save()
+            elif account_type == "lecturer":
+                lecturer = Staff.objects.create(user=account)
+                lecturer.save()
+            elif account_type =="employee":
+                employee = Employee.objects.create(user=account)
+            elif account_type =="employer":
+                employer = Employer.objects.create(account)
+            return redirect('login')
+        else:
+            messages.error(request,"An error occurred during registration")
+        return render(request,'account/register.html')
         
 class Logout(View):
     def get(self,request):
@@ -29,12 +50,11 @@ class Logout(View):
         return redirect('home')
     
 
-class Login(View):
-    def get(self,request):
-        if request.user.is_authenticated:
-            return redirect('home')
-        return render(request,'account/login.html')
-    def post(self,request):
+def Login(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
+    if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         try:
@@ -47,9 +67,8 @@ class Login(View):
             return redirect('home')
         else:
             messages.error(request,'Username Or password does not exit')
-        return render(request, 'account/login.html')
-
-        
+    return render(request,'account/login.html')
+    
 class StudentView(View):
     form_class = RegistrationForm()
     def get(self,request):

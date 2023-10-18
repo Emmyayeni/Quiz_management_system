@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Questions, AnswerOptions
+from .models import Questions, AnswerOptions,Course,TotalCourseTest
+from testapp.models import Test
 import json
 from django.http import JsonResponse
 import random
@@ -17,6 +18,35 @@ def questions(request):
     context = {"questions": question}
     return render(request, 'testapp/questions.html', context)
 
+def save_question(request):
+    datas = json.loads(request.body)
+    data = datas['form']
+    user = request.user 
+    answery = data['answer']
+    testt = Questions.objects.get(question=data['question'])
+    course = Course.objects.get(name=data['course'])
+    try:
+        q_test = Test.objects.get(user=user,course=course,question=testt)
+    except Test.DoesNotExist:
+        q_test = Test.objects.create(user=user,course=course,question=testt)
+    q_test.answer = data['answer']
+    q_test.score = q_test.calculate_test_score()
+    q_test.save()
+    return JsonResponse('Successfully added answer')
+
+def submit_question(request):
+    datas = json.loads(request.body)
+    data = datas['form'] 
+    coursey = data['course']
+
+    user = request.user
+    course = Course.objects.get(name=coursey)
+    quiz = TotalCourseTest.objects.create(user=user,course=course)
+    quiz.add_questions()
+    quiz.total_score = quiz.calculate_total_score()
+    quiz.save()
+    return JsonResponse("successfully submited questions")
+    
 
 def create_question(request):
     data = json.loads(request.body)
@@ -30,21 +60,8 @@ def create_question(request):
     questions.save()
     return JsonResponse('payment complete', safe=False)
 
-def register(request):
-    data = json.loads(request.body)
-    datas = data['form']
-    print(datas)
-    return JsonResponse('user info received', safe=False)
-
-
-
 def question_create(request):
     questions = Questions.objects.all()
-
-    # print(questions)
-    # for questt in questions:
-    #     print(questt)
-
     new_list = random.sample(list(questions),3)
     print(new_list)
     
@@ -64,6 +81,6 @@ def exam(request):
     page = request.GET.get('page')
     list = paginator.get_page(page)
     listno = list.paginator.num_pages
-    print(exam_list)
+
     return render(request,'exam.html',{'q_list':list,'non_all':listno})
 

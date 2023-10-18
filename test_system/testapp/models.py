@@ -1,6 +1,7 @@
 from account.models import Account, Student, Staff
 from django.db import models
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # faculty
 class Faculty(models.Model):
@@ -65,13 +66,26 @@ class Questions(models.Model):
 
 # test
 class Test(models.Model):
+    user = models.ForeignKey(Account,on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, blank=True, null=True)
-    question = models.ManyToManyField(Questions)
-    # selected_answer = models.CharField(max_length=255)
+    question = models.ForeignKey(Questions,on_delete=models.DO_NOTHING)
+    answer = models.CharField(max_length=255)
+    score = models.IntegerField(null=True,blank=True)
 
     def __str__(self):
         return self.course.name
 
+    def calculate_test_score(self):
+        if self.answer == self.question.correct_answer:
+             self.score = 2
+             return self.score
+        else:
+            self.score = 0
+            return self.score
+
+    
+        
+    
 
 # studentquestionanswer
 class StudentQuestAns(models.Model):
@@ -81,3 +95,29 @@ class StudentQuestAns(models.Model):
 
     def __str__(self):
         return self.student.name
+
+class TotalCourseTest(models.Model):
+    user = models.ForeignKey(Account,on_delete=models.CASCADE)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    questions = models.ManyToManyField(Test,blank=True)
+    total_score = models.IntegerField(blank=True,null=True)
+
+
+    def __str__(self):
+        return self.user.username
+
+    def add_questions(self):
+        course = self.course
+        user= self.user
+        all_q = Test.objects.filter(user=user,course=course)
+        for q in all_q:
+            self.questions.add(q)
+
+
+    def calculate_total_score(self):
+        questions = self.questions
+        total = sum([q.score for q in questions.all()])
+        return total
+
+        
+

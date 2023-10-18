@@ -1,0 +1,139 @@
+{% extends "student/snippets/base.html" %}
+{% block content %}
+{% include "student/snippets/nav.html" %}
+{% include "student/snippets/aside.html" %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1> Student | Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center test">
+                      <i class="bi bi-pen"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">Examination/quiz</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card sales-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center performance">
+                      <i class="bi bi-list-check"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">result</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center settings">
+                      <i class="bi bi-gear"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">settings</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card .revenue-card ">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">profile</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all student who registered your course
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <div class="d-flex align-items-center m-2">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center file">
+                      <i class="bi bi-files"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h5><a href="#" class="text-dark">Files</a> </h5>
+                    </div>
+                  </div>
+                  <div class="ps-8 small text-muted ">
+                    this page includes all files 
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+          </div>
+        </div><!-- End Left side columns -->
+     </div>
+    </section>
+</main>
+{% endblock content %}
