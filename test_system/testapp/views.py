@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Questions, AnswerOptions,Course,TotalCourseTest
+from django.shortcuts import render,redirect
+from .models import Questions, AnswerOptions,Course,TotalCourseTest,Student
 from testapp.models import Test
 import json
 from django.http import JsonResponse
@@ -7,9 +7,19 @@ import random
 from django.core.paginator import Paginator
 
 
+
 # Create your views here.
 
 def home(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect('staff_home')
+        else:
+            try:
+                Student.objects.get(user=request.user)
+            except Student.DoesNotExist:
+                pass
+            return redirect('student_home')
     return render(request, 'home.html')
 
 

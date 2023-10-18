@@ -24,35 +24,35 @@
                   
                   <button class="btn btn-warning edit_btn"><i class="bi bi-pen "></i></button>
                   <div class="card-body m-0">
-                    <i class="text-bold ">Question <span>1 of 3</span></i>
+                    <i class="text-bold ">Question <span>{{question.id}}</span></i>
                     <div class="pt-3 question" id="">
-                      what is your name
+                      {{question.question}}
                     </div>
                     <div class="d-flex flex-wrap mb-3 pt-3 gap-3" id="form">
-                      
                       <div class=" d-flex flex-wrap gap-1">
-                        (A).<p>emmanuel</p>
+                        (A).<p>{{answers.a}}</p>
                         </label>
                       </div>
                       <div class="d-flex flex-wrap gap-1">
-                        (B).<p>victor</p>
+                        (B).<p>{{answer.b}}</p>
                         </label>
                       </div>
                       <div class="d-flex flex-wrap gap-1">
-                        (C).<p>james</p>
+                        (C).<p>{{answers.c}}</p>
                         </label>
                       </div>
                       <div class="d-flex flex-wrap gap-1">
                         (D).<p>
-                         tehe</p>
+                         {{answers.d}}</p>
                         </label>
                       </div>
 
                     </div>
                     <div class="d-flex"> 
-                        answer:<p class="text-primary"> victor</p>
+                        answer:<p class="text-primary"> {{question.correct_answer}}</p>
                     </div>
                   </div>
+                  
                 </div>
             </div>
         </section>

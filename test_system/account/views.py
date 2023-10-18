@@ -33,8 +33,10 @@ class RegistrationView(View):
                 student = Student.objects.create(user=account)
                 student.save()
             elif account_type == "lecturer":
+                account.is_staff = True
                 lecturer = Staff.objects.create(user=account)
                 lecturer.save()
+                account.save()
             elif account_type =="employee":
                 employee = Employee.objects.create(user=account)
             elif account_type =="employer":
@@ -69,82 +71,3 @@ def Login(request):
             messages.error(request,'Username Or password does not exit')
     return render(request,'account/login.html')
     
-class StudentView(View):
-    form_class = RegistrationForm()
-    def get(self,request):
-        if request.user.is_authenticated:
-            return redirect('home')
-        return render(request,'account/register.html',{'form':self.form_class})
-    def post(self,request):
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email').lower()
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email,password=raw_password)
-            student = Student.objects.create(user=account)
-            student.save()
-            return redirect('home')
-        else:
-            messages.error(request, 'something went wrong check your form')
-        return render(request,'account/register.html',{'form':form})
-
-class StaffView(View):
-    form = RegistrationForm()
-    def get(self,request):
-        if request.user.is_authenticated:
-            return redirect('home')
-        return render(request,'account/register.html',{'form':self.form})
-    def post(self,request):
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email').lower()
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email,password=raw_password)
-            staff = Staff.objects.create(user=account)
-            staff.save()
-            return redirect('home')
-        else:
-            messages.error(request, 'something went wrong check your form')
-        return render(request,'account/register.html',{'form':form})
-   
-class EmployeeView(View):
-    form = RegistrationForm()
-    def get(self,request):
-        if request.user.is_authenticated:
-            return redirect('home')
-        return render(request,'account/register.html',{'form':self.form})
-    def post(self,request):
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email').lower()
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email,password=raw_password)
-            employee = Employee.objects.create(user=account)
-            employee.save()
-            return redirect('home')
-        else:
-            messages.error(request, 'something went wrong check your form')
-        return render(request,'account/register.html',{'form':form})
-   
-class EmployerView(View):
-    form = RegistrationForm()
-    def get(self,request):
-        if request.user.is_authenticated:
-           return redirect('home')
-        return render(request,'account/register.html',{'form':self.form})
-    def post(self,request):
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email').lower()
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email,password=raw_password)
-            employer = Employer.objects.create(user=account)
-            employer.save()
-            return redirect('home')
-        else:
-            messages.error(request, 'something went wrong check your form')
-        return render(request,'account/register',{'form':form})

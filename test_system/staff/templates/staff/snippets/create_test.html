@@ -42,31 +42,14 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {% for q in questions %}
                             <tr>
-                              <th scope="row"><a href="#">#2457</a></th>
-                              <td><a href="#">what is your name</a> </td>
-                              <td>2022-11</td>
+                              <th scope="row"><a href="#">#1</a></th>
+                              <td><a href="{% url 'single' q_id=q.id %}">{{q.question}}</a> </td>
+                              <td>{{q.created}}</td>
                             </tr>
-                            <tr>
-                              <th scope="row"><a href="#">#2147</a></th>
-                              <td><a href="#">where are you  where</a></td>
-                              <td>2022-12</td>
-                            </tr>
-                            <tr>
-                              <th scope="row"><a href="#">#2049</a></th>
-                              <td><a href="#">how old are you</a></td><td>2021-13</td>
-                              
-                            </tr>
-                            <tr>
-                              <th scope="row"><a href="#">#2644</a></th>
-                              <td><a href="#">where do you live</a></td><td>2020-34</td>
-                              
-                            </tr>
-                            <tr>
-                              <th scope="row"><a href="#">#2644</a></th>
-                              <td><a href="#">where are you from</a></td>
-                              <td>2021-34</td>
-                            </tr>
+                            {% endfor %}
+
                           </tbody>
                         </table>
                       </div>

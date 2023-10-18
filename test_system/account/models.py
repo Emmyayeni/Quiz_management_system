@@ -78,6 +78,7 @@ class Account(AbstractBaseUser):
 class Staff(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
 
+
     def __str__(self):
         return self.user.username
 
