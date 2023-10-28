@@ -11,7 +11,9 @@
               <div class="card recent-sales overflow-auto">
                 <div class="d-flex justify-content-end align-items-center">
                   <button class="btn btn-warning m-2"><i class="bi bi-list-check"></i></button>
-                  <button class="btn btn-primary"><i class="bi bi-plus"></i></button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                    <i class="bi bi-plus"></i>
+                  </button>
                 </div>
                 
                 <div class="card-body">
@@ -73,7 +75,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                  <form id="form">
                         <div class="row mb-3">
                           <label for="inputText" class="col-sm-2 col-form-label">Question:</label>
                           <div class="col-sm-10">
@@ -115,7 +117,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary" id="add_test">Save changes</button>
                 </div>
               </div>
             </div>
@@ -123,16 +125,17 @@
           
         <script type="text/javascript">
         var form = document.getElementById('form');
-        var atform = document.getElementById('atform')
-        var addTest = document.getElementById('addtest');
+ 
+        var addTest = document.getElementById('add_test');
 
-        addTest.addEventListener('click',()=>{
+        addTest.addEventListener('click',(e)=>{
+          e.preventDefault()
+            console.log('Form Submitted...')
+                submitFormData()
             alert('sometin touch me')
         })
             form.addEventListener('submit', function(e){
-            e.preventDefault()
-            console.log('Form Submitted...')
-                submitFormData()
+            
             })
         atform.addEventListener('submit', function(e){
             e.preventDefault()
@@ -140,7 +143,7 @@
             submitatFormData()
         })
 
-            function submitFormData(){
+        function submitFormData(){
             console.log('question added')
 
                 var QuestionFormData = {
@@ -152,23 +155,23 @@
                 'correct_answer':form.correct_answer.value
             }
 
-                    console.log('Question Info:', QuestionFormData)
+            console.log('Question Info:', QuestionFormData)
 
-                    var url = "/create_question"
-                    fetch(url, {
-                        method:'POST',
-                        headers:{
-                            'Content-Type':'applicaiton/json',
-                            'X-CSRFToken':csrftoken,
-                        },
-                        body:JSON.stringify({'form':QuestionFormData}),
+            var url = "/create_question"
+              fetch(url, {
+                   method:'POST',
+                    headers:{
+                    'Content-Type':'applicaiton/json',
+                    'X-CSRFToken':csrftoken,
+                    },
+                    body:JSON.stringify({'form':QuestionFormData}),
 
-                    })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log('Success:', data);
-                        alert('question successfully added');
-                        window.location.href = "{% url 'question' %}"
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log('Success:', data);
+                  alert('question successfully added');
+                        window.location.href = "{% url 'create_test' %}"
 
                         })
                 }

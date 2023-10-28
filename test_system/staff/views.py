@@ -1,7 +1,9 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
-from testapp.models import Questions
+from testapp.models import Questions,AnswerOptions
 from django.contrib.auth.decorators import login_required, permission_required
+from django.http import JsonResponse, HttpResponse
+import json
 
 # Create your views here.
 @staff_member_required
@@ -29,5 +31,27 @@ def single_page(request,*args,**kwargs):
     context={"question":question,"answers":answers}
     return render(request,'staff/snippets/single_page.html',context)
 
+def update_question(request):
+    datas = json.loads(request.body)
+    data = datas['form']
+    question = Questions.objects.get(id=data['couse_id'])
+    question.question = data['question']
+    question.save()
+    answer_id = question.answer_options.id
+    answers =  AnswerOptions.objects.get(id=answer_id)
+    answers.a = data['a']
+    answers.b= data['b']
+    answers.c= data['c']
+    answers.d= data['d']
+    answers.save()
+
+    return HttpResponse('Successfully edit answer')
+
 def create_quiz(request):
     return render(request,'staff/snippets/create_quiz.html')
+
+def profile_page(request):
+    return render(request, 'staff/snippets/profile.html')
+
+def performance(request):
+    return render(request,'staff/snippets/performance.html')
